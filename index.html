@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Сталкер: Кодовая панель</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding-top: 100px;
+    }
+    h1 {
+      margin-bottom: 40px;
+    }
+    .panel {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .btn {
+      width: 60px;
+      height: 60px;
+      background-color: #222;
+      border: 2px solid #0f0;
+      color: #0f0;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn:hover {
+      background-color: #0f0;
+      color: #000;
+    }
+    #result {
+      margin-top: 40px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ввод кода доступа</h1>
+  <div class="panel">
+    <button class="btn" onclick="pressButton(1)">1</button>
+    <button class="btn" onclick="pressButton(2)">2</button>
+    <button class="btn" onclick="pressButton(3)">3</button>
+    <button class="btn" onclick="pressButton(4)">4</button>
+    <button class="btn" onclick="pressButton(5)">5</button>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    const correctSequence = [3, 1, 4, 5, 2]; // Секретная последовательность
+    let inputSequence = [];
+
+    function pressButton(num) {
+      inputSequence.push(num);
+      if (inputSequence.length === 5) {
+        checkSequence();
+      }
+    }
+
+    function checkSequence() {
+      const result = document.getElementById("result");
+      if (inputSequence.join('') === correctSequence.join('')) {
+        result.innerHTML = "Дверь открыта! Код: <strong>7342</strong>";
+      } else {
+        result.innerHTML = "Ошибка! Последовательность неверна.";
+      }
+      inputSequence = []; // Сброс после попытки
+    }
+  </script>
+
+</body>
+</html>
